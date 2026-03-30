@@ -230,6 +230,30 @@ body {
   </div>
 </div>
 
+<!-- Tutorial -->
+<div class="modal-overlay show" id="tutModal">
+  <div class="modal">
+    <div style="font-size:48px;margin-bottom:8px">💡</div>
+    <h2 style="background:linear-gradient(135deg,#FFE066,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent">LIGHT OUT</h2>
+    <p style="margin:14px 0 6px;color:var(--text);font-size:15px;font-weight:600">모든 불을 꺼라!</p>
+    <div style="background:var(--surface2);border-radius:12px;padding:14px;margin:12px 0;text-align:left">
+      <div style="margin-bottom:10px;display:flex;gap:10px;align-items:flex-start">
+        <span style="font-size:22px">🟡</span>
+        <div><b style="color:var(--accent)">노란 칸 = 켜짐</b><br><span style="color:var(--text-dim);font-size:13px">모든 칸을 꺼야 클리어!</span></div>
+      </div>
+      <div style="margin-bottom:10px;display:flex;gap:10px;align-items:flex-start">
+        <span style="font-size:22px">👆</span>
+        <div><b style="color:var(--accent)">칸을 누르면</b><br><span style="color:var(--text-dim);font-size:13px">그 칸 + 상하좌우 칸이 동시에 ON/OFF 전환</span></div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <span style="font-size:22px">🎯</span>
+        <div><b style="color:var(--accent)">최소 횟수</b>로 끄면 별 3개!<br><span style="color:var(--text-dim);font-size:13px">Hint(무료)·Answer(1코인)·Skip 사용 가능</span></div>
+      </div>
+    </div>
+    <button class="mbtn mbtn-primary" id="tutStart" style="width:100%;font-size:16px;padding:14px">시작하기!</button>
+  </div>
+</div>
+
 <!-- Levels -->
 <div class="modal-overlay" id="lvModal">
   <div class="modal">
@@ -664,6 +688,17 @@ window.addEventListener('resize',()=>buildGrid());
 // ═══════════════════════════════════════════
 //  INIT
 // ═══════════════════════════════════════════
+document.getElementById('tutStart').addEventListener('click',()=>{
+    document.getElementById('tutModal').classList.remove('show');
+    sndClick();
+});
+
+// Only show tutorial on first visit
+if (localStorage.getItem('luna-lightout-seen')) {
+    document.getElementById('tutModal').classList.remove('show');
+}
+localStorage.setItem('luna-lightout-seen','1');
+
 loadLevel(unlocked<20?unlocked:0);
 </script>
 </body>
