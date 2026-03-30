@@ -574,6 +574,12 @@ function onWin() {
     setTimeout(sndCoin,400);
     document.getElementById('coinCount').textContent=coins;
 
+    // 루나 홈페이지 코인 +1 적립
+    try {
+        const lunaCoins = parseInt(localStorage.getItem('luna_coins') || '0') + 1;
+        localStorage.setItem('luna_coins', lunaCoins);
+    } catch(e) {}
+
     document.getElementById('winStars').textContent=
         (stars>=1?'⭐':'☆')+(stars>=2?'⭐':'☆')+(stars>=3?'⭐':'☆');
     document.getElementById('winMoves').textContent=moves;
